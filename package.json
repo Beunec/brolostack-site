@@ -1,13 +1,21 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "brolostack-interactive-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "A comprehensive, production-ready interactive website built with the Brolostack framework",
+  "homepage": "https://brolostack-site.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Beunec/brolostack-site.git"
+  },
+  "keywords": ["brolostack", "react", "typescript", "vite", "production-ready"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
