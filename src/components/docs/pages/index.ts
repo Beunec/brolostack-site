@@ -1,5 +1,4 @@
 // Export all page components
-export { default as NotFoundPage } from './NotFoundPage';
 
 // Export AI Framework pages
 export { default as AIFrameworkPage } from './ai-framework/AIFrameworkPage';
