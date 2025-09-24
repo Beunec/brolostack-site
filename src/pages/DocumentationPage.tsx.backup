@@ -1,0 +1,1183 @@
+import React, { useState } from 'react';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ChevronDown, 
+  ChevronRight, 
+  Menu, 
+  X, 
+  BookOpen,
+  Zap,
+  Brain,
+  Shield,
+  Wifi,
+  Cloud,
+  Code,
+  Users,
+  Wrench,
+  Building,
+  BarChart
+} from 'lucide-react';
+
+const DocumentationPage: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    'getting-started': true,
+    'ai-framework': true
+  });
+  const location = useLocation();
+
+  const navigationSections = [
+    {
+      id: 'getting-started',
+      title: 'Getting Started',
+      icon: Zap,
+      items: [
+        { path: '/docs/getting-started', title: 'Getting Started' }
+      ]
+    },
+    {
+      id: 'ai-framework',
+      title: 'AI Framework',
+      icon: Brain,
+      items: [
+        { path: '/docs/ai-framework', title: 'AI Framework' }
+      ]
+    },
+    {
+      id: 'security-framework',
+      title: 'Security Framework',
+      icon: Shield,
+      items: [
+        { path: '/docs/devil-security', title: 'Brolostack Devil Security' },
+        { path: '/docs/security-framework', title: 'Security Framework' }
+      ]
+    },
+    {
+      id: 'websocket-framework',
+      title: 'WebSocket Framework',
+      icon: Wifi,
+      items: [
+        { path: '/docs/websocket-framework', title: 'WebSocket Framework' }
+      ]
+    },
+    {
+      id: 'authentication',
+      title: 'Authentication',
+      icon: Users,
+      items: [
+        { path: '/docs/ciam-integration', title: 'CIAM Integration' }
+      ]
+    },
+    {
+      id: 'cloud-integration',
+      title: 'Cloud Integration',
+      icon: Cloud,
+      items: [
+        { path: '/docs/cloud-integration', title: 'Cloud Integration' }
+      ]
+    },
+    {
+      id: 'backend-integration',
+      title: 'Backend Integration',
+      icon: Wrench,
+      items: [
+        { path: '/docs/backend-integration', title: 'Backend Integration' }
+      ]
+    },
+    {
+      id: 'enterprise-features',
+      title: 'Enterprise Features',
+      icon: Building,
+      items: [
+        { path: '/docs/enterprise-features', title: 'Enterprise Features' }
+      ]
+    },
+    {
+      id: 'environment-management',
+      title: 'Environment Management',
+      icon: BookOpen,
+      items: [
+        { path: '/docs/environment-management', title: 'Environment Management' }
+      ]
+    },
+    {
+      id: 'token-usage-control',
+      title: 'Token Usage Control',
+      icon: BarChart,
+      items: [
+        { path: '/docs/token-usage-control', title: 'Token Usage Control' }
+      ]
+    },
+    {
+      id: 'browser-compatibility',
+      title: 'Browser Compatibility',
+      icon: Code,
+      items: [
+        { path: '/docs/browser-compatibility', title: 'Browser Compatibility' },
+        { path: '/docs/browser-private-mode', title: 'Browser Private Mode' }
+      ]
+    },
+    {
+      id: 'framework-status',
+      title: 'Framework Status',
+      icon: BarChart,
+      items: [
+        { path: '/docs/framework-status', title: 'Framework Status' },
+        { path: '/docs/optional-dependencies', title: 'Optional Dependencies' },
+        { path: '/docs/worker-guide', title: 'Worker Guide' }
+      ]
+    }
+  ];
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
+
+  const getCurrentPageTitle = () => {
+    const currentPath = location.pathname;
+    
+    for (const section of navigationSections) {
+      for (const item of section.items) {
+        if (item.path === currentPath) {
+          return item.title;
+        }
+      }
+    }
+    
+    return 'Documentation';
+  };
+
+  return (
+    <div className="documentation-page">
+      {/* Mobile menu button */}
+      <button 
+        className="mobile-menu-button"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      <div className="documentation-layout">
+        {/* Sidebar */}
+        <AnimatePresence>
+          {(isSidebarOpen || window.innerWidth > 768) && (
+            <motion.aside 
+              className={`sidebar ${isSidebarOpen ? 'open' : ''}`}
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              exit={{ x: -300 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="sidebar-content">
+                <div className="sidebar-header">
+                  <h3>Documentation</h3>
+                </div>
+
+                <nav className="sidebar-nav">
+                  {navigationSections.map((section) => (
+                    <div key={section.id} className="nav-section">
+                      <button
+                        className="section-toggle"
+                        onClick={() => toggleSection(section.id)}
+                      >
+                        <div className="section-title">
+                          <section.icon size={18} />
+                          <span>{section.title}</span>
+                        </div>
+                        {expandedSections[section.id] ? (
+                          <ChevronDown size={16} />
+                        ) : (
+                          <ChevronRight size={16} />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {expandedSections[section.id] && (
+                          <motion.div
+                            className="section-items"
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {section.items.map((item) => (
+                              <Link
+                                key={item.path}
+                                to={item.path}
+                                className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+                                onClick={() => setIsSidebarOpen(false)}
+                              >
+                                {item.title}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+                </nav>
+              </div>
+            </motion.aside>
+          )}
+        </AnimatePresence>
+
+        {/* Main content */}
+        <main className="main-content">
+          <div className="content-header">
+            <h1 className="page-title">{getCurrentPageTitle()}</h1>
+          </div>
+
+          <div className="content-body">
+            <Routes>
+              <Route path="/getting-started" element={<GettingStartedContent />} />
+              <Route path="/ai-framework" element={<AIFrameworkContent />} />
+              <Route path="/devil-security" element={<DevilSecurityContent />} />
+              <Route path="/security-framework" element={<SecurityFrameworkContent />} />
+              <Route path="/websocket-framework" element={<WebSocketFrameworkContent />} />
+              <Route path="/ciam-integration" element={<CIAMIntegrationContent />} />
+              <Route path="/cloud-integration" element={<CloudIntegrationContent />} />
+              <Route path="/backend-integration" element={<BackendIntegrationContent />} />
+              <Route path="/enterprise-features" element={<EnterpriseFeaturesContent />} />
+              <Route path="/environment-management" element={<EnvironmentManagementContent />} />
+              <Route path="/token-usage-control" element={<TokenUsageControlContent />} />
+              <Route path="/browser-compatibility" element={<BrowserCompatibilityContent />} />
+              <Route path="/browser-private-mode" element={<BrowserPrivateModeContent />} />
+              <Route path="/framework-status" element={<FrameworkStatusContent />} />
+              <Route path="/optional-dependencies" element={<OptionalDependenciesContent />} />
+              <Route path="/worker-guide" element={<WorkerGuideContent />} />
+              <Route path="/*" element={<DefaultDocContent />} />
+            </Routes>
+          </div>
+        </main>
+      </div>
+
+      <style>{`
+        .documentation-page {
+          padding-top: 80px;
+          min-height: 100vh;
+        }
+
+        .mobile-menu-button {
+          display: none;
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 1000;
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          padding: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+        }
+
+        .documentation-layout {
+          display: grid;
+          grid-template-columns: 300px 1fr;
+          min-height: calc(100vh - 80px);
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 24px;
+          gap: 0;
+        }
+
+        .sidebar {
+          background: white;
+          border-right: 1px solid #e2e8f0;
+          height: calc(100vh - 80px);
+          overflow-y: auto;
+          z-index: 900;
+        }
+
+        .sidebar-content {
+          padding: 24px 0;
+        }
+
+        .sidebar-header {
+          padding: 0 24px 24px;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .sidebar-header h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: black;
+        }
+
+        .sidebar-nav {
+          padding: 24px 0;
+        }
+
+        .nav-section {
+          margin-bottom: 8px;
+        }
+
+        .section-toggle {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 24px;
+          border: none;
+          background: none;
+          text-align: left;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          color: black;
+        }
+
+        .section-toggle:hover {
+          background-color: #f8fafc;
+        }
+
+        .section-title {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-weight: 500;
+        }
+
+        .section-items {
+          overflow: hidden;
+        }
+
+        .nav-item {
+          display: block;
+          padding: 8px 24px 8px 54px;
+          color: #64748b;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          font-size: 14px;
+        }
+
+        .nav-item:hover {
+          color: #00477d;
+          background-color: #f8fafc;
+        }
+
+        .nav-item.active {
+          color: #00477d;
+          background-color: #e0f2fe;
+          font-weight: 500;
+          border-right: 3px solid #00477d;
+        }
+
+        .main-content {
+          padding: 40px 40px 40px 60px;
+          max-width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .content-header {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+
+        .page-title {
+          font-size: 32px;
+          font-weight: 700;
+          color: black;
+          margin-bottom: 8px;
+        }
+
+        .content-body {
+          max-width: 900px;
+          margin: 0 auto;
+          text-align: left;
+          flex: 1;
+        }
+
+        @media (max-width: 1024px) {
+          .mobile-menu-button {
+            display: block;
+          }
+
+          .documentation-layout {
+            display: block;
+            max-width: 100%;
+            padding: 0 16px;
+          }
+
+          .sidebar {
+            position: fixed;
+            top: 80px;
+            left: -300px;
+            width: 280px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+          }
+
+          .sidebar.open {
+            left: 0;
+          }
+
+          .main-content {
+            padding: 20px 16px;
+            max-width: 100%;
+          }
+
+          .page-title {
+            font-size: 24px;
+          }
+
+          .content-body {
+            max-width: 100%;
+            margin: 0;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .documentation-layout {
+            max-width: 1600px;
+            padding: 0 40px;
+            grid-template-columns: 300px 1fr;
+          }
+
+          .main-content {
+            padding: 40px 60px 40px 80px;
+          }
+
+          .content-body {
+            max-width: 1000px;
+            margin: 0 auto;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .documentation-layout {
+            max-width: 1200px;
+            padding: 0 32px;
+            grid-template-columns: 280px 1fr;
+          }
+
+          .sidebar {
+            width: 280px;
+          }
+
+          .main-content {
+            padding: 32px 20px 32px 40px;
+            max-width: 100%;
+          }
+
+          .content-body {
+            max-width: 100%;
+            margin: 0 auto;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+// Documentation Content Components
+const IntroductionContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Welcome to Brolostack</h2>
+      <p>
+        Brolostack (Browser Local Stack) is a local-first full-stack framework that operates 
+        entirely in the user's browser with optional cloud integration. By leveraging browser 
+        storage as a persistent database, Brolostack eliminates server costs for core functionality 
+        while providing enterprise-grade capabilities.
+      </p>
+
+      <div className="highlight-box">
+        <h3>🎯 Core Philosophy</h3>
+        <ul>
+          <li><strong>Local-First:</strong> Your data stays in your browser</li>
+          <li><strong>Zero Server Costs:</strong> Core functionality requires no backend</li>
+          <li><strong>Enterprise-Grade:</strong> Advanced AI, security, and real-time features</li>
+          <li><strong>Optional Cloud:</strong> Sync with 22+ cloud providers when needed</li>
+        </ul>
+      </div>
+
+      <h3>Key Benefits</h3>
+      <div className="benefits-grid">
+        <div className="benefit-card">
+          <Zap className="benefit-icon" />
+          <h4>Instant Performance</h4>
+          <p>No network latency - all data operations happen locally</p>
+        </div>
+        <div className="benefit-card">
+          <Shield className="benefit-icon" />
+          <h4>Enhanced Privacy</h4>
+          <p>Your data never leaves your device unless you choose to sync</p>
+        </div>
+        <div className="benefit-card">
+          <Cloud className="benefit-icon" />
+          <h4>Works Offline</h4>
+          <p>Full functionality even without internet connection</p>
+        </div>
+      </div>
+    </div>
+
+    <style>{`
+      .doc-content {
+        line-height: 1.7;
+      }
+
+      .doc-content h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 16px;
+      }
+
+      .doc-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: black;
+        margin: 32px 0 16px;
+      }
+
+      .doc-content p {
+        color: #374151;
+        margin-bottom: 16px;
+      }
+
+      .highlight-box {
+        background: #f0f9ff;
+        border: 1px solid #0ea5e9;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 32px 0;
+      }
+
+      .highlight-box h3 {
+        margin: 0 0 16px;
+        color: #0369a1;
+      }
+
+      .highlight-box ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .highlight-box li {
+        margin-bottom: 8px;
+        color: #374151;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin: 24px 0;
+      }
+
+      .benefit-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .benefit-icon {
+        width: 48px;
+        height: 48px;
+        color: #00477d;
+        margin: 0 auto 16px;
+      }
+
+      .benefit-card h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: black;
+      }
+
+      .benefit-card p {
+        font-size: 14px;
+        color: #6b7280;
+        margin: 0;
+      }
+    `}</style>
+  </motion.div>
+);
+
+const InstallationContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Installation</h2>
+      <p>Get started with Brolostack in just a few minutes.</p>
+
+      <h3>NPM Installation</h3>
+      <div className="code-block">
+        <code>npm install brolostack</code>
+      </div>
+
+      <h3>Yarn Installation</h3>
+      <div className="code-block">
+        <code>yarn add brolostack</code>
+      </div>
+
+      <h3>PNPM Installation</h3>
+      <div className="code-block">
+        <code>pnpm add brolostack</code>
+      </div>
+
+      <div className="info-box">
+        <h4>📦 Package Information</h4>
+        <ul>
+          <li><strong>Bundle Size:</strong> 319KB (main framework)</li>
+          <li><strong>Dependencies:</strong> 4 secure packages</li>
+          <li><strong>TypeScript:</strong> 100% type coverage</li>
+          <li><strong>Browser Support:</strong> Chrome 60+, Firefox 55+, Safari 12+</li>
+        </ul>
+      </div>
+
+      <h3>CDN Usage</h3>
+      <p>For quick prototyping, you can use Brolostack directly from a CDN:</p>
+      <div className="code-block">
+        <code>
+          {`<script src="https://unpkg.com/brolostack@latest/dist/index.js"></script>`}
+        </code>
+      </div>
+    </div>
+
+    <style>{`
+      .doc-content h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 16px;
+      }
+
+      .doc-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: black;
+        margin: 32px 0 16px;
+      }
+
+      .doc-content p {
+        color: #374151;
+        margin-bottom: 16px;
+        line-height: 1.7;
+      }
+
+      .code-block {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 16px 24px;
+        border-radius: 8px;
+        margin: 16px 0;
+        font-family: 'Monaco', 'Menlo', monospace;
+        border-left: 4px solid #00477d;
+        overflow-x: auto;
+      }
+
+      .info-box {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 32px 0;
+      }
+
+      .info-box h4 {
+        margin: 0 0 16px;
+        color: #1e293b;
+        font-weight: 600;
+      }
+
+      .info-box ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .info-box li {
+        margin-bottom: 8px;
+        color: #374151;
+      }
+    `}</style>
+  </motion.div>
+);
+
+const QuickStartContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Quick Start</h2>
+      <p>Get up and running with Brolostack in 5 minutes.</p>
+
+      <h3>1. Basic Setup</h3>
+      <div className="code-block">
+        <pre>{`import { Brolostack } from 'brolostack';
+
+// Initialize the framework
+const app = new Brolostack({
+  appName: 'my-awesome-app',
+  version: '1.0.0'
+});
+
+// Initialize the app
+await app.initialize();`}</pre>
+      </div>
+
+      <h3>2. Create a Data Store</h3>
+      <div className="code-block">
+        <pre>{`// Create a store for managing todos
+const todoStore = app.createStore('todos', {
+  todos: [],
+  
+  addTodo: (text) => set(state => ({
+    todos: [...state.todos, {
+      id: Date.now(),
+      text,
+      completed: false
+    }]
+  })),
+  
+  toggleTodo: (id) => set(state => ({
+    todos: state.todos.map(todo =>
+      todo.id === id 
+        ? { ...todo, completed: !todo.completed }
+        : todo
+    )
+  }))
+});`}</pre>
+      </div>
+
+      <h3>3. React Integration</h3>
+      <div className="code-block">
+        <pre>{`import { BrolostackProvider } from 'brolostack/react';
+
+function App() {
+  return (
+    <BrolostackProvider appName="my-awesome-app">
+      <TodoApp />
+    </BrolostackProvider>
+  );
+}
+
+function TodoApp() {
+  const { stores } = useBrolostack();
+  const todoStore = stores.get('todos');
+  const todos = todoStore?.getState().todos || [];
+  
+  return (
+    <div>
+      {todos.map(todo => (
+        <div key={todo.id}>
+          {todo.text}
+        </div>
+      ))}
+    </div>
+  );
+}`}</pre>
+      </div>
+
+      <div className="success-box">
+        <h4>🎉 That's it!</h4>
+        <p>
+          You now have a fully functional local-first application with persistent storage,
+          state management, and React integration - all without any server setup!
+        </p>
+      </div>
+
+      <h3>Next Steps</h3>
+      <div className="next-steps">
+        <Link to="/docs/ai-overview" className="next-step-link">
+          <Brain size={20} />
+          Add AI capabilities
+        </Link>
+        <Link to="/docs/security-overview" className="next-step-link">
+          <Shield size={20} />
+          Implement security
+        </Link>
+        <Link to="/docs/cloud-overview" className="next-step-link">
+          <Cloud size={20} />
+          Enable cloud sync
+        </Link>
+      </div>
+    </div>
+
+    <style>{`
+      .doc-content h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 16px;
+      }
+
+      .doc-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: black;
+        margin: 32px 0 16px;
+      }
+
+      .doc-content p {
+        color: #374151;
+        margin-bottom: 16px;
+        line-height: 1.7;
+      }
+
+      .code-block {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+        font-family: 'Monaco', 'Menlo', monospace;
+        border-left: 4px solid #00477d;
+        overflow-x: auto;
+      }
+
+      .code-block pre {
+        margin: 0;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .success-box {
+        background: #f0fdf4;
+        border: 1px solid #22c55e;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 32px 0;
+      }
+
+      .success-box h4 {
+        margin: 0 0 12px;
+        color: #15803d;
+        font-weight: 600;
+      }
+
+      .success-box p {
+        margin: 0;
+        color: #374151;
+      }
+
+      .next-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .next-step-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #374151;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .next-step-link:hover {
+        border-color: #00477d;
+        color: #00477d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 71, 125, 0.1);
+      }
+    `}</style>
+  </motion.div>
+);
+
+const DefaultDocContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Documentation Coming Soon</h2>
+      <p>
+        This documentation section is currently being developed. 
+        Please check back soon or visit our GitHub repository for the latest updates.
+      </p>
+      
+      <div className="placeholder-content">
+        <h3>🚧 Under Construction</h3>
+        <p>
+          We're working hard to provide comprehensive documentation for all Brolostack features.
+          In the meantime, you can:
+        </p>
+        <ul>
+          <li>Check out the <Link to="/docs/introduction">Introduction</Link> for an overview</li>
+          <li>Follow the <Link to="/docs/quick-start">Quick Start</Link> guide</li>
+          <li>Visit our <a href="https://github.com/Beunec/brolostack" target="_blank" rel="noopener noreferrer">GitHub repository</a></li>
+          <li>Try the <a href="https://www.npmjs.com/package/brolostack" target="_blank" rel="noopener noreferrer">NPM package</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <style>{`
+      .doc-content h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 16px;
+      }
+
+      .doc-content h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: black;
+        margin: 24px 0 16px;
+      }
+
+      .doc-content p {
+        color: #374151;
+        margin-bottom: 16px;
+        line-height: 1.7;
+      }
+
+      .placeholder-content {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 32px 0;
+      }
+
+      .placeholder-content h3 {
+        margin: 0 0 16px;
+        color: #92400e;
+      }
+
+      .placeholder-content ul {
+        margin: 16px 0 0;
+        padding-left: 20px;
+      }
+
+      .placeholder-content li {
+        margin-bottom: 8px;
+        color: #374151;
+      }
+
+      .placeholder-content a {
+        color: #00477d;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .placeholder-content a:hover {
+        text-decoration: underline;
+      }
+    `}</style>
+  </motion.div>
+);
+
+// New Content Components based on actual Brolostack documentation
+const GettingStartedContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Getting Started with Brolostack</h2>
+      <p>
+        Build full-stack apps with zero server costs - Brolostack runs entirely in the user's browser with optional cloud integration.
+      </p>
+
+      <h3>Quick Install</h3>
+      <div className="code-block">
+        <code>npm install brolostack</code>
+      </div>
+
+      <h3>5-Minute Setup</h3>
+      <div className="highlight-box">
+        <h4>1. Initialize Brolostack</h4>
+        <div className="code-block">
+          <pre>{`import { Brolostack } from 'brolostack';
+
+const app = new Brolostack({
+  appName: 'my-app',
+  version: '1.0.2'
+});
+
+await app.initialize();`}</pre>
+        </div>
+      </div>
+
+      <div className="highlight-box">
+        <h4>2. Create Your First Store</h4>
+        <div className="code-block">
+          <pre>{`const todoStore = app.createStore('todos', {
+  todos: [],
+  addTodo: (text) => set(state => ({
+    todos: [...state.todos, { id: Date.now(), text, done: false }]
+  })),
+  toggleTodo: (id) => set(state => ({
+    todos: state.todos.map(todo => 
+      todo.id === id ? { ...todo, done: !todo.done } : todo
+    )
+  }))
+});`}</pre>
+        </div>
+      </div>
+
+      <div className="highlight-box">
+        <h4>3. Use Your Data</h4>
+        <div className="code-block">
+          <pre>{`// Get data
+const todos = todoStore.getState().todos;
+
+// Update data
+todoStore.addTodo('Learn Brolostack');`}</pre>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const AIFrameworkContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Brolostack AI Framework</h2>
+      <p>
+        The Brolostack AI Framework provides comprehensive AI capabilities for frontend applications, featuring:
+      </p>
+
+      <ul>
+        <li><strong>4 Reasoning Frameworks:</strong> ReAct, Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), Self-Consistency CoT</li>
+        <li><strong>AI Governance System:</strong> Beunec Sacred Data Governance Framework (BrolostackBSDGF4AI)</li>
+        <li><strong>Frontend-First Design:</strong> Works in React/browser applications with optional backend integration</li>
+        <li><strong>Multi-Provider Support:</strong> 18+ AI providers through unified interface</li>
+        <li><strong>Security Integration:</strong> Works with Brolostack Devil security framework</li>
+        <li><strong>Token Usage Control:</strong> Cost management and monitoring system</li>
+      </ul>
+
+      <h3>AI Reasoning Frameworks</h3>
+      <div className="benefits-grid">
+        <div className="benefit-card">
+          <Brain className="benefit-icon" />
+          <h4>BrolostackReAcT</h4>
+          <p>Reasoning framework that combines thinking with actionable steps</p>
+        </div>
+        <div className="benefit-card">
+          <Brain className="benefit-icon" />
+          <h4>Chain-of-Thought (CoT)</h4>
+          <p>Logical step progression for complex reasoning tasks</p>
+        </div>
+        <div className="benefit-card">
+          <Brain className="benefit-icon" />
+          <h4>Tree-of-Thoughts (ToT)</h4>
+          <p>Multiple reasoning paths for comprehensive analysis</p>
+        </div>
+        <div className="benefit-card">
+          <Brain className="benefit-icon" />
+          <h4>Self-Consistency CoT</h4>
+          <p>Multiple attempts for accuracy and reliability</p>
+        </div>
+      </div>
+
+      <h3>AI Governance (BrolostackBSDGF4AI)</h3>
+      <div className="highlight-box">
+        <h4>Safety Modules</h4>
+        <ul>
+          <li><strong>Hallucination Detection:</strong> Identifies false AI claims</li>
+          <li><strong>Jailbreak Prevention:</strong> Blocks prompt injection attacks</li>
+          <li><strong>Toxic Language Filter:</strong> Removes harmful content</li>
+          <li><strong>Bias Detection:</strong> Identifies unfair responses</li>
+          <li><strong>Privacy Protection:</strong> Detects PII exposure</li>
+          <li><strong>Context Drift:</strong> Monitors conversation coherence</li>
+          <li><strong>Industry Readiness:</strong> Domain-specific validation</li>
+        </ul>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const DevilSecurityContent: React.FC = () => (
+  <motion.div 
+    className="doc-content"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="doc-section">
+      <h2>Brolostack Devil Security Framework</h2>
+      <p>
+        The Brolostack Devil Security Framework provides advanced zero-knowledge encryption and source code protection for client-side applications.
+      </p>
+
+      <h3>Core Features</h3>
+      <ul>
+        <li><strong>Zero-Knowledge Encryption:</strong> Data encryption where keys never leave the client</li>
+        <li><strong>Source Code Protection:</strong> Code obfuscation and anti-debugging features</li>
+        <li><strong>Multi-Language Support:</strong> JavaScript, TypeScript, Python, HTML, PHP, CSS protection</li>
+        <li><strong>Self-Evolving Security:</strong> Dynamic encryption patterns that change over time</li>
+        <li><strong>Browser Protection:</strong> Anti-debugging and developer tools protection</li>
+        <li><strong>Quantum-Resistant Algorithms:</strong> Future-proof encryption methods</li>
+      </ul>
+
+      <h3>Security Capabilities</h3>
+      <div className="benefits-grid">
+        <div className="benefit-card">
+          <Shield className="benefit-icon" />
+          <h4>Zero-Knowledge Encryption</h4>
+          <p>Keys never leave client - Maximum protection level</p>
+        </div>
+        <div className="benefit-card">
+          <Shield className="benefit-icon" />
+          <h4>Quantum-Resistant</h4>
+          <p>Future-proof algorithms - Maximum protection level</p>
+        </div>
+        <div className="benefit-card">
+          <Shield className="benefit-icon" />
+          <h4>Source Code Obfuscation</h4>
+          <p>Multi-language protection - High protection level</p>
+        </div>
+        <div className="benefit-card">
+          <Shield className="benefit-icon" />
+          <h4>Anti-Debugging</h4>
+          <p>DevTools protection - High protection level</p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// Placeholder components for other documentation pages
+const SecurityFrameworkContent: React.FC = () => <DefaultDocContent />;
+const WebSocketFrameworkContent: React.FC = () => <DefaultDocContent />;
+const CIAMIntegrationContent: React.FC = () => <DefaultDocContent />;
+const CloudIntegrationContent: React.FC = () => <DefaultDocContent />;
+const BackendIntegrationContent: React.FC = () => <DefaultDocContent />;
+const EnterpriseFeaturesContent: React.FC = () => <DefaultDocContent />;
+const EnvironmentManagementContent: React.FC = () => <DefaultDocContent />;
+const TokenUsageControlContent: React.FC = () => <DefaultDocContent />;
+const BrowserCompatibilityContent: React.FC = () => <DefaultDocContent />;
+const BrowserPrivateModeContent: React.FC = () => <DefaultDocContent />;
+const FrameworkStatusContent: React.FC = () => <DefaultDocContent />;
+const OptionalDependenciesContent: React.FC = () => <DefaultDocContent />;
+const WorkerGuideContent: React.FC = () => <DefaultDocContent />;
+
+export default DocumentationPage;
