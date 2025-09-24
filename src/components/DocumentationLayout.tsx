@@ -23,22 +23,24 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// Import page components
-import { GettingStartedPage, GettingStartedGuidePage } from './docs/pages/getting-started';
-import { AIFrameworkPage, AIFrameworkGuidePage } from './docs/pages/ai-framework';
-import { DevilSecurityPage, SecurityFrameworkPage, SecurityFrameworkGuidePage } from './docs/pages/security-framework';
-import { CloudIntegrationPage } from './docs/pages/cloud-integration';
-import { BrolostackWorkerPage, BrolostackWorkerGuidePage } from './docs/pages/brolostack-worker';
-import { WebSocketFrameworkPage, WebSocketFrameworkGuidePage, BrolostackWSClientPage, BrolostackWSMultiAgentPage } from './docs/pages/websocket-framework';
-import { CIAMIntegrationPage, AuthenticationGuidePage } from './docs/pages/authentication';
-import { BackendIntegrationPage, BackendIntegrationGuidePage } from './docs/pages/backend-integration';
-import { EnterpriseFeaturesPage, EnterpriseFeaturesGuidePage } from './docs/pages/enterprise-features';
-import { EnvironmentManagementPage, EnvironmentManagementGuidePage } from './docs/pages/environment-management';
-import { TokenUsageControlPage, TokenUsageControlGuidePage } from './docs/pages/token-usage-control';
-import { BrowserCompatibilityPage, BrowserCompatibilityGuidePage, BrowserPrivateModePage } from './docs/pages/browser-compatibility';
-import { FrameworkStatusPage, FrameworkStatusGuidePage } from './docs/pages/framework-status';
-import { CommunityGuidePage } from './docs/pages/community';
-import { OptionalDependenciesPage } from './docs/pages/optional-dependencies';
+// Import page components from centralized index
+import {
+  GettingStartedPage, GettingStartedGuidePage,
+  AIFrameworkPage, AIFrameworkGuidePage,
+  DevilSecurityPage, SecurityFrameworkPage, SecurityFrameworkGuidePage,
+  CloudIntegrationPage,
+  BrolostackWorkerPage, BrolostackWorkerGuidePage,
+  WebSocketFrameworkPage, WebSocketFrameworkGuidePage, BrolostackWSClientPage, BrolostackWSMultiAgentPage,
+  CIAMIntegrationPage, AuthenticationGuidePage,
+  BackendIntegrationPage, BackendIntegrationGuidePage,
+  EnterpriseFeaturesPage, EnterpriseFeaturesGuidePage,
+  EnvironmentManagementPage, EnvironmentManagementGuidePage,
+  TokenUsageControlPage, TokenUsageControlGuidePage,
+  BrowserCompatibilityPage, BrowserCompatibilityGuidePage, BrowserPrivateModePage,
+  FrameworkStatusPage, FrameworkStatusGuidePage,
+  CommunityGuidePage,
+  OptionalDependenciesPage
+} from './docs/pages';
 
 interface NavigationSection {
   id: string;
