@@ -76,7 +76,7 @@ vercel --prod
 
 ### Option 3: One-Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/BeunecCloud/Brolostack-Site.git)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Beunec/brolostack-site.git)
 
 ## 🔧 Environment Variables
 
