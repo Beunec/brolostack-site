@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import DocumentationPage from './pages/DocumentationPage';
-import NotFoundPage from './components/docs/pages/NotFoundPage';
+import NotFoundPage from './components/docs/pages/NotFoundPage.tsx';
 import BrowserCompatibility from './components/BrowserCompatibility';
 import { initializeBrolostack, performance } from './lib/brolostack';
 import { SecurityManager } from './lib/security';
