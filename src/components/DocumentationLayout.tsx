@@ -40,7 +40,7 @@ import {
   FrameworkStatusPage, FrameworkStatusGuidePage,
   CommunityGuidePage,
   OptionalDependenciesPage
-} from './docs/pages/index';
+} from '../components/docs/pages/index';
 
 interface NavigationSection {
   id: string;
