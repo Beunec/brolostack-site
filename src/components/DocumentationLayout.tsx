@@ -23,38 +23,38 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// Import page components directly - simplified for Vercel deployment
-import GettingStartedPage from './docs/pages/getting-started/GettingStartedPage';
-import GettingStartedGuidePage from './docs/pages/getting-started/GettingStartedGuidePage';
-import AIFrameworkPage from './docs/pages/ai-framework/AIFrameworkPage';
-import AIFrameworkGuidePage from './docs/pages/ai-framework/AIFrameworkGuidePage';
-import SecurityFrameworkPage from './docs/pages/security-framework/SecurityFrameworkPage';
-import SecurityFrameworkGuidePage from './docs/pages/security-framework/SecurityFrameworkGuidePage';
-import DevilSecurityPage from './docs/pages/security-framework/DevilSecurityPage';
-import CloudIntegrationPage from './docs/pages/cloud-integration/CloudIntegrationPage';
-import BrolostackWorkerPage from './docs/pages/brolostack-worker/BrolostackWorkerPage';
-import BrolostackWorkerGuidePage from './docs/pages/brolostack-worker/BrolostackWorkerGuidePage';
-import WebSocketFrameworkPage from './docs/pages/websocket-framework/WebSocketFrameworkPage';
-import WebSocketFrameworkGuidePage from './docs/pages/websocket-framework/WebSocketFrameworkGuidePage';
-import BrolostackWSClientPage from './docs/pages/websocket-framework/BrolostackWSClientPage';
-import BrolostackWSMultiAgentPage from './docs/pages/websocket-framework/BrolostackWSMultiAgentPage';
-import AuthenticationGuidePage from './docs/pages/authentication/AuthenticationGuidePage';
-import CIAMIntegrationPage from './docs/pages/authentication/CIAMIntegrationPage';
-import BackendIntegrationPage from './docs/pages/backend-integration/BackendIntegrationPage';
-import BackendIntegrationGuidePage from './docs/pages/backend-integration/BackendIntegrationGuidePage';
-import EnterpriseFeaturesPage from './docs/pages/enterprise-features/EnterpriseFeaturesPage';
-import EnterpriseFeaturesGuidePage from './docs/pages/enterprise-features/EnterpriseFeaturesGuidePage';
-import EnvironmentManagementPage from './docs/pages/environment-management/EnvironmentManagementPage';
-import EnvironmentManagementGuidePage from './docs/pages/environment-management/EnvironmentManagementGuidePage';
-import TokenUsageControlPage from './docs/pages/token-usage-control/TokenUsageControlPage';
-import TokenUsageControlGuidePage from './docs/pages/token-usage-control/TokenUsageControlGuidePage';
-import BrowserCompatibilityPage from './docs/pages/browser-compatibility/BrowserCompatibilityPage';
-import BrowserCompatibilityGuidePage from './docs/pages/browser-compatibility/BrowserCompatibilityGuidePage';
-import BrowserPrivateModePage from './docs/pages/browser-compatibility/BrowserPrivateModePage';
-import FrameworkStatusPage from './docs/pages/framework-status/FrameworkStatusPage';
-import FrameworkStatusGuidePage from './docs/pages/framework-status/FrameworkStatusGuidePage';
-import CommunityGuidePage from './docs/pages/community/CommunityGuidePage';
-import OptionalDependenciesPage from './docs/pages/optional-dependencies/OptionalDependenciesPage';
+// Import page components using absolute paths from src - Vercel compatible
+import GettingStartedPage from '../components/docs/pages/getting-started/GettingStartedPage';
+import GettingStartedGuidePage from '../components/docs/pages/getting-started/GettingStartedGuidePage';
+import AIFrameworkPage from '../components/docs/pages/ai-framework/AIFrameworkPage';
+import AIFrameworkGuidePage from '../components/docs/pages/ai-framework/AIFrameworkGuidePage';
+import SecurityFrameworkPage from '../components/docs/pages/security-framework/SecurityFrameworkPage';
+import SecurityFrameworkGuidePage from '../components/docs/pages/security-framework/SecurityFrameworkGuidePage';
+import DevilSecurityPage from '../components/docs/pages/security-framework/DevilSecurityPage';
+import CloudIntegrationPage from '../components/docs/pages/cloud-integration/CloudIntegrationPage';
+import BrolostackWorkerPage from '../components/docs/pages/brolostack-worker/BrolostackWorkerPage';
+import BrolostackWorkerGuidePage from '../components/docs/pages/brolostack-worker/BrolostackWorkerGuidePage';
+import WebSocketFrameworkPage from '../components/docs/pages/websocket-framework/WebSocketFrameworkPage';
+import WebSocketFrameworkGuidePage from '../components/docs/pages/websocket-framework/WebSocketFrameworkGuidePage';
+import BrolostackWSClientPage from '../components/docs/pages/websocket-framework/BrolostackWSClientPage';
+import BrolostackWSMultiAgentPage from '../components/docs/pages/websocket-framework/BrolostackWSMultiAgentPage';
+import AuthenticationGuidePage from '../components/docs/pages/authentication/AuthenticationGuidePage';
+import CIAMIntegrationPage from '../components/docs/pages/authentication/CIAMIntegrationPage';
+import BackendIntegrationPage from '../components/docs/pages/backend-integration/BackendIntegrationPage';
+import BackendIntegrationGuidePage from '../components/docs/pages/backend-integration/BackendIntegrationGuidePage';
+import EnterpriseFeaturesPage from '../components/docs/pages/enterprise-features/EnterpriseFeaturesPage';
+import EnterpriseFeaturesGuidePage from '../components/docs/pages/enterprise-features/EnterpriseFeaturesGuidePage';
+import EnvironmentManagementPage from '../components/docs/pages/environment-management/EnvironmentManagementPage';
+import EnvironmentManagementGuidePage from '../components/docs/pages/environment-management/EnvironmentManagementGuidePage';
+import TokenUsageControlPage from '../components/docs/pages/token-usage-control/TokenUsageControlPage';
+import TokenUsageControlGuidePage from '../components/docs/pages/token-usage-control/TokenUsageControlGuidePage';
+import BrowserCompatibilityPage from '../components/docs/pages/browser-compatibility/BrowserCompatibilityPage';
+import BrowserCompatibilityGuidePage from '../components/docs/pages/browser-compatibility/BrowserCompatibilityGuidePage';
+import BrowserPrivateModePage from '../components/docs/pages/browser-compatibility/BrowserPrivateModePage';
+import FrameworkStatusPage from '../components/docs/pages/framework-status/FrameworkStatusPage';
+import FrameworkStatusGuidePage from '../components/docs/pages/framework-status/FrameworkStatusGuidePage';
+import CommunityGuidePage from '../components/docs/pages/community/CommunityGuidePage';
+import OptionalDependenciesPage from '../components/docs/pages/optional-dependencies/OptionalDependenciesPage';
 
 interface NavigationSection {
   id: string;
