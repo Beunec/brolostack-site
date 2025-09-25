@@ -23,24 +23,33 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// Import page components from centralized index
-import {
-  GettingStartedPage, GettingStartedGuidePage,
-  AIFrameworkPage, AIFrameworkGuidePage,
-  DevilSecurityPage, SecurityFrameworkPage, SecurityFrameworkGuidePage,
-  CloudIntegrationPage,
-  BrolostackWorkerPage, BrolostackWorkerGuidePage,
-  WebSocketFrameworkPage, WebSocketFrameworkGuidePage, BrolostackWSClientPage, BrolostackWSMultiAgentPage,
-  CIAMIntegrationPage, AuthenticationGuidePage,
-  BackendIntegrationPage, BackendIntegrationGuidePage,
-  EnterpriseFeaturesPage, EnterpriseFeaturesGuidePage,
-  EnvironmentManagementPage, EnvironmentManagementGuidePage,
-  TokenUsageControlPage, TokenUsageControlGuidePage,
-  BrowserCompatibilityPage, BrowserCompatibilityGuidePage, BrowserPrivateModePage,
-  FrameworkStatusPage, FrameworkStatusGuidePage,
-  CommunityGuidePage,
-  OptionalDependenciesPage
-} from '../components/docs/pages/index';
+// Import page components directly - simplified for Vercel deployment
+import GettingStartedPage from './docs/pages/getting-started/GettingStartedPage';
+import GettingStartedGuidePage from './docs/pages/getting-started/GettingStartedGuidePage';
+import AIFrameworkPage from './docs/pages/ai-framework/AIFrameworkPage';
+import AIFrameworkGuidePage from './docs/pages/ai-framework/AIFrameworkGuidePage';
+import SecurityFrameworkPage from './docs/pages/security-framework/SecurityFrameworkPage';
+import SecurityFrameworkGuidePage from './docs/pages/security-framework/SecurityFrameworkGuidePage';
+import CloudIntegrationPage from './docs/pages/cloud-integration/CloudIntegrationPage';
+import BrolostackWorkerPage from './docs/pages/brolostack-worker/BrolostackWorkerPage';
+import BrolostackWorkerGuidePage from './docs/pages/brolostack-worker/BrolostackWorkerGuidePage';
+import WebSocketFrameworkPage from './docs/pages/websocket-framework/WebSocketFrameworkPage';
+import WebSocketFrameworkGuidePage from './docs/pages/websocket-framework/WebSocketFrameworkGuidePage';
+import AuthenticationGuidePage from './docs/pages/authentication/AuthenticationGuidePage';
+import BackendIntegrationPage from './docs/pages/backend-integration/BackendIntegrationPage';
+import BackendIntegrationGuidePage from './docs/pages/backend-integration/BackendIntegrationGuidePage';
+import EnterpriseFeaturesPage from './docs/pages/enterprise-features/EnterpriseFeaturesPage';
+import EnterpriseFeaturesGuidePage from './docs/pages/enterprise-features/EnterpriseFeaturesGuidePage';
+import EnvironmentManagementPage from './docs/pages/environment-management/EnvironmentManagementPage';
+import EnvironmentManagementGuidePage from './docs/pages/environment-management/EnvironmentManagementGuidePage';
+import TokenUsageControlPage from './docs/pages/token-usage-control/TokenUsageControlPage';
+import TokenUsageControlGuidePage from './docs/pages/token-usage-control/TokenUsageControlGuidePage';
+import BrowserCompatibilityPage from './docs/pages/browser-compatibility/BrowserCompatibilityPage';
+import BrowserCompatibilityGuidePage from './docs/pages/browser-compatibility/BrowserCompatibilityGuidePage';
+import FrameworkStatusPage from './docs/pages/framework-status/FrameworkStatusPage';
+import FrameworkStatusGuidePage from './docs/pages/framework-status/FrameworkStatusGuidePage';
+import CommunityGuidePage from './docs/pages/community/CommunityGuidePage';
+import OptionalDependenciesPage from './docs/pages/optional-dependencies/OptionalDependenciesPage';
 
 interface NavigationSection {
   id: string;
