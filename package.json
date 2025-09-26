@@ -9,13 +9,7 @@
     "type": "git",
     "url": "https://github.com/Beunec/brolostack-site.git"
   },
-  "keywords": [
-    "brolostack",
-    "react",
-    "typescript",
-    "vite",
-    "production-ready"
-  ],
+  "keywords": ["brolostack", "react", "typescript", "vite", "production-ready"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

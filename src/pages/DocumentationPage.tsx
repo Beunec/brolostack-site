@@ -1,5 +1,5 @@
 import React from 'react';
-import DocumentationLayout from '../components/DocumentationLayout';
+import DocumentationLayout from '../components/docs/layout/DocumentationLayout';
 import { useSEO } from '../hooks/useSEO';
 
 const DocumentationPage: React.FC = () => {

@@ -24,21 +24,21 @@ import {
 } from 'lucide-react';
 
 // Import page components
-import { GettingStartedPage, GettingStartedGuidePage } from './docs/pages/getting-started/index';
-import { AIFrameworkPage, AIFrameworkGuidePage } from './docs/pages/ai-framework/index';
-import { DevilSecurityPage, SecurityFrameworkPage, SecurityFrameworkGuidePage } from './docs/pages/security-framework/index';
-import { CloudIntegrationPage } from './docs/pages/cloud-integration/index';
-import { BrolostackWorkerPage, BrolostackWorkerGuidePage } from './docs/pages/brolostack-worker/index';
-import { WebSocketFrameworkPage, WebSocketFrameworkGuidePage, BrolostackWSClientPage, BrolostackWSMultiAgentPage } from './docs/pages/websocket-framework/index';
-import { CIAMIntegrationPage, AuthenticationGuidePage } from './docs/pages/authentication/index';
-import { BackendIntegrationPage, BackendIntegrationGuidePage } from './docs/pages/backend-integration/index';
-import { EnterpriseFeaturesPage, EnterpriseFeaturesGuidePage } from './docs/pages/enterprise-features/index';
-import { EnvironmentManagementPage, EnvironmentManagementGuidePage } from './docs/pages/environment-management/index';
-import { TokenUsageControlPage, TokenUsageControlGuidePage } from './docs/pages/token-usage-control/index';
-import { BrowserCompatibilityPage, BrowserCompatibilityGuidePage, BrowserPrivateModePage } from './docs/pages/browser-compatibility/index';
-import { FrameworkStatusPage, FrameworkStatusGuidePage } from './docs/pages/framework-status/index';
-import { CommunityGuidePage } from './docs/pages/community/index';
-import { OptionalDependenciesPage } from './docs/pages/optional-dependencies/index';
+import { GettingStartedPage, GettingStartedGuidePage } from '../pages/getting-started/index';
+import { AIFrameworkPage, AIFrameworkGuidePage } from '../pages/ai-framework/index';
+import { DevilSecurityPage, SecurityFrameworkPage, SecurityFrameworkGuidePage } from '../pages/security-framework/index';
+import { CloudIntegrationPage } from '../pages/cloud-integration/index';
+import { BrolostackWorkerPage, BrolostackWorkerGuidePage } from '../pages/brolostack-worker/index';
+import { WebSocketFrameworkPage, WebSocketFrameworkGuidePage, BrolostackWSClientPage, BrolostackWSMultiAgentPage } from '../pages/websocket-framework/index';
+import { CIAMIntegrationPage, AuthenticationGuidePage } from '../pages/authentication/index';
+import { BackendIntegrationPage, BackendIntegrationGuidePage } from '../pages/backend-integration/index';
+import { EnterpriseFeaturesPage, EnterpriseFeaturesGuidePage } from '../pages/enterprise-features/index';
+import { EnvironmentManagementPage, EnvironmentManagementGuidePage } from '../pages/environment-management/index';
+import { TokenUsageControlPage, TokenUsageControlGuidePage } from '../pages/token-usage-control/index';
+import { BrowserCompatibilityPage, BrowserCompatibilityGuidePage, BrowserPrivateModePage } from '../pages/browser-compatibility/index';
+import { FrameworkStatusPage, FrameworkStatusGuidePage } from '../pages/framework-status/index';
+import { CommunityGuidePage } from '../pages/community/index';
+import { OptionalDependenciesPage } from '../pages/optional-dependencies/index';
 
 interface NavigationSection {
   id: string;
