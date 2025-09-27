@@ -57,7 +57,7 @@ import {
   FrameworkStatusGuidePage,
   CommunityGuidePage,
   OptionalDependenciesPage
-} from './docs/index';
+} from '@/pages/docs';
 
 
 interface NavigationSection {
