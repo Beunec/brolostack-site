@@ -127,7 +127,7 @@ const Homepage: React.FC = () => {
                   Install Brolostack
                 </motion.a>
                 
-                <Link to="/docs/introduction" className="secondary-cta">
+                <Link to="/docs/getting-started" className="secondary-cta">
                   Get Started
                   <ArrowRight size={18} />
                 </Link>
@@ -650,7 +650,7 @@ const Homepage: React.FC = () => {
                 Start Building Now
               </motion.a>
               
-              <Link to="/docs/introduction" className="secondary-cta">
+              <Link to="/docs/getting-started" className="secondary-cta">
                 View Documentation
               </Link>
             </div>

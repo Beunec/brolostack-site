@@ -6,19 +6,7 @@ import {
   Zap, 
   CheckCircle, 
   ArrowRight, 
-  Code, 
-  BarChart,
-  Users,
-  Lock,
-  Eye,
-  AlertTriangle,
-  Target,
-  Cpu,
-  Database,
-  Globe,
-  Settings,
-  FileText,
-  Key
+  BarChart
 } from 'lucide-react';
 
 const AIFrameworkGuidePage: React.FC = () => {

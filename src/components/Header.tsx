@@ -45,7 +45,7 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="desktop-nav-center">
-            <Link to="/docs/introduction" className="nav-link">
+            <Link to="/docs/getting-started" className="nav-link">
               Documentation
             </Link>
             <a 
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <Link 
-                to="/docs/introduction" 
+                to="/docs/getting-started" 
                 className="mobile-nav-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

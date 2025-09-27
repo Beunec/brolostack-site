@@ -11,6 +11,8 @@ import { SecurityManager } from './lib/security';
 import { useSEO } from './hooks/useSEO';
 import './App.css';
 
+// Documentation pages are now imported and routed within DocumentationPage component
+
 // SEO Handler component that must be inside Router
 function SEOHandler() {
   useSEO();
@@ -137,11 +139,15 @@ function App() {
     <Router>
       <div>
         <SEOHandler />
-        <BrowserCompatibility />
-        <Header />
+      <BrowserCompatibility />
+      <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          
+          {/* Documentation Routes - All docs pages use DocumentationPage layout */}
           <Route path="/docs/*" element={<DocumentationPage />} />
+          
+          {/* Catch-all route */}
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
@@ -229,7 +235,7 @@ function App() {
             🌐 Browser Active
           </div>
         )}
-      </div>
+    </div>
     </Router>
   );
 }
